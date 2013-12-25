@@ -1,0 +1,9 @@
+Package: toyrpkg
+Type: Package
+Title: A toy R package 
+Version: 1.0
+Date: 2013-12-24
+Author: Maverick
+Maintainer: Who to complain to <yourfault@somewhere.net>
+Description: A toy R package 
+License: GPL-3
