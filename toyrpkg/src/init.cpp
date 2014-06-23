@@ -32,8 +32,14 @@ static const R_CallMethodDef CallEntries[] = {
 };
 
 
+#ifdef __cplusplus
+extern "C" {
+#endif
 void attribute_visible R_init_toyrpkg(DllInfo *dll) {
   R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
   R_useDynamicSymbols(dll, FALSE);
   R_forceSymbols(dll, TRUE);
 }
+#ifdef __cplusplus
+}
+#endif

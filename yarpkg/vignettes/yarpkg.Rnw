@@ -1,0 +1,78 @@
+%\VignetteEngine{knitr::knitr} 
+\documentclass[12pt]{article}
+
+\usepackage{amsmath}
+
+\begin{document}
+
+\title{An R package for Bactrian distribution}
+
+\maketitle
+
+\section{What is a Bactrian distribution?}
+
+In fact, I do not know what a Bactrian distribution is. I guess the
+name is from Bactrian camel or something like that. Anyway, it could
+mean a mixture of two Gaussian distribution. For example, one type
+of a mixture of normal distribution has the following density function:
+
+\begin{align*} 
+f(x \vert \mu, \sigma^2, m) &= 
+\frac{1}{2\sigma \sqrt{2 \pi (1-m^2)}} 
+\left[ \exp \left \lbrace -\frac{(x-\mu+m\sigma)^2}{2(1-m^2) \sigma^2}
+            \right \rbrace + 
+       \exp \left \lbrace -\frac{(x-\mu-m\sigma)^2}{2(1-m^2) \sigma^2}      
+            \right \rbrace 
+\right], 
+\end{align*}
+where $\mu \in \Re$, $\sigma> 0$, and $0<m<1$.
+
+In fact, the above density is can be written as
+\begin{flalign*}
+f(x \vert \mu, \sigma^2, m) &=  0.5 f_N(x;  \mu - m \sigma, (1-m^2) \sigma^2) + 
+                                0.5 f_N(x;  \mu + m \sigma, (1-m^2) \sigma^2),
+\end{flalign*}
+where $f_N(x; \mu, \sigma)$ stands for the probability density function
+for normal distribution with mean $\mu$ and variance $\sigma^2$. 
+This above density actually specify a distribution with mean $\mu$ and variance
+$\sigma^2$. 
+
+This package provides functions for computing the density functions
+and generating random samples from this distribution. 
+
+\section{Functions in this package} 
+
+This package provides function \texttt{rbacktriannorm} to generate samples
+from Bactrian normal distribution with parameters $\mu$, $\sigma$, and $m$. 
+Function \texttt{dbacktriannorm} can be used to comput the probability
+density functions. 
+
+We provide some examples of using these two functions. First we simulate
+some samples and draw the histogram as well as the density function. 
+
+<<rbacktriannorm, fig.height = 5, fig.width = 5, dev = 'tikz', tidy=FALSE>>=
+library(yarpkg)
+x <- rbacktriannorm(1000, m = 0.95)
+x1 <- sort(x)
+dx1 <- dbacktriannorm(x1, m = 0.95)
+hist(x, main = "$\\mu = 0$, $\\sigma = 1$, $m = 0.95$", 
+     ylim = c(0, max(dx1)), prob = TRUE)
+lines(x1, dx1, col = 'red') 
+@
+
+Next, we take a look of the distribution for different $m$. 
+
+
+<<dbacktriannorm, fig.width = 5, fig.height = 5, dev = 'tikz', tidy = FALSE>>=
+x <- seq(-3, 3, length.out = 200)
+y1 <- dbacktriannorm(x, m = 0.98)
+y2 <- dbacktriannorm(x, m = 0.95)
+y3 <- dbacktriannorm(x, m = 0.8)
+plot(x, y1, col = 'black', ylab = 'pdf', type = 'l')
+lines(x, y2, col = 'red')
+lines(x, y3, col = 'blue')
+legend("topright", legend=c("m=0.98", "m=0.95", "m=0.8"), 
+       col = c("black", "red", "blue"), lty = 1, bty = 'n')
+@
+
+\end{document}
