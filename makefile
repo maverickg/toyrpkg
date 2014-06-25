@@ -16,5 +16,8 @@ install: $(PKGtargz)
 clean: 
 	rm -f $(PKGtargz) 
 
-.PHONY: build install clean
+listfiles:
+	find yarpkg -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'
+
+.PHONY: build install clean listfiles
 
