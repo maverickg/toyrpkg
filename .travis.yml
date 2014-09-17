@@ -22,6 +22,9 @@ before_install:
   - chmod 755 ./travis-tool.sh
   - chmod 755 ./wait4.sh
   - ./travis-tool.sh bootstrap
+  - more /proc/meminfo
+  - free -t -m
+  - vmstat
     
 install:
   - ./travis-tool.sh install_aptget r-cran-runit ccache
