@@ -8,12 +8,11 @@ compiler:
   
 env:
   matrix: 
-    - CXX_OLEVEL=0
-    - CXX_OLEVEL=3
+    - CXX_OLEVEL=2
 
 matrix:
   allow_failures:
-    - env: CXX_OLEVEL=0
+    - env: CXX_OLEVEL=2
     - compiler: clang
 
 before_install:
@@ -25,6 +24,7 @@ before_install:
   - more /proc/meminfo
   - free -t -m
   - vmstat
+  - dd if=/dev/zero of=.swapfile bs=2048 count=1M &&  mkswap .swapfile && sudo swapon .swapfile
     
 install:
   - ./travis-tool.sh install_aptget r-cran-runit ccache
