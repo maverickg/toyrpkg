@@ -23,8 +23,7 @@ before_install:
   - ./travis-tool.sh bootstrap
   - more /proc/meminfo
   - free -t -m
-  - vmstat
-  - dd if=/dev/zero of=.swapfile bs=2048 count=1M &&  mkswap .swapfile && sudo swapon .swapfile
+  - vmstat # - dd if=/dev/zero of=.swapfile bs=2048 count=1M &&  mkswap .swapfile && sudo swapon .swapfile
     
 install:
   - ./travis-tool.sh install_aptget r-cran-runit ccache
