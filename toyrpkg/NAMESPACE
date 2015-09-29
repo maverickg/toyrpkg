@@ -1,2 +1,3 @@
 exportPattern("^[[:alpha:]]+")
 useDynLib(toyrpkg, .registration = TRUE)
+import(Rcpp)

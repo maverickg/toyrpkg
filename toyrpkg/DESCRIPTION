@@ -7,3 +7,4 @@ Author: Maverick
 Maintainer: Who to complain to <yourfault@somewhere.net>
 Description: A toy R package 
 License: GPL-3
+LinkingTo: Rcpp, RcppEigen, BH (>= 1.58), StanHeaders (>= 2.8.0), rstan
