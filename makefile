@@ -16,7 +16,7 @@ install: $(PKGtargz)
 clean: 
 	rm -f $(PKGtargz) 
 	rm -f ./toyrpkg/src/*.o 
-	rm -f ./toyrpkg/src/*.so a.cpp
+	rm -f ./toyrpkg/src/*.so ./toyrpkg/src/a.cpp ./toyrpkg/src/b.cpp
 
 listfiles:
 	find yarpkg -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'

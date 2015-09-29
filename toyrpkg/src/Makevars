@@ -3,7 +3,7 @@ PKG_CPPFLAGS = -I"$(STANHEADERS_SRC)" -DBOOST_RESULT_OF_USE_TR1 -DBOOST_NO_DECLT
 
 
 SOURCES_STAN = $(wildcard *.stan)
-OBJECTS = $(SOURCES_STAN:.stan=.o) 
+OBJECTS = $(SOURCES_STAN:.stan=.o)
 
 %.cpp: %.stan
 	Rscript --vanilla stan2cpp.R $< $@
