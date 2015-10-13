@@ -3,5 +3,5 @@ parameters {
 }
 
 model {
-  y ~ exponential(10);
+  y ~ exponential(.10);
 } 
